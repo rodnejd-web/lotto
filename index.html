@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4SGXN492J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-K4SGXN492J');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 행운 - 로또 추첨기 & 무료 사주 분석</title>
+    <meta name="description" content="무료 로또 번호 추첨과 인공지능 기반 사주 분석 서비스를 제공합니다. 당신의 오늘 운세를 확인하고 행운의 번호를 받아보세요.">
+    <meta name="keywords" content="로또, 로또추첨, 사주, 무료사주, 운세, 오늘의운세, 행운">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4265545624091942"
+     crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-4265545624091942">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #ffffff;
+            --accent-color: #ffd700;
+            --tab-bg: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            min-height: 100vh;
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 0;
+            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .title {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #b8b8ff;
+        }
+
+        nav.tab-menu {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: white;
+            background: var(--tab-bg);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-gradient);
+            border-color: transparent;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        main.tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        main.tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .info-section p {
+            margin-bottom: 10px;
+            color: #e0e0ff;
+        }
+
+        .draw-btn {
+            display: block;
+            margin: 20px auto 40px;
+            padding: 18px 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: white;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .draw-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .lotto-set {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .set-title {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .numbers-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .number-ball {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .color-1-9 { background: linear-gradient(135deg, #fbc531 0%, #e1b12c 100%); }
+        .color-10-19 { background: linear-gradient(135deg, #487eb0 0%, #40739e 100%); }
+        .color-20-29 { background: linear-gradient(135deg, #e84118 0%, #c23616 100%); }
+        .color-30-39 { background: linear-gradient(135deg, #7f8fa6 0%, #718093 100%); }
+        .color-40-45 { background: linear-gradient(135deg, #4cd137 0%, #44bd32 100%); }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #b8b8ff;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1em;
+        }
+
+        /* 데이트/타임 피커 아이콘 스타일링 */
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            background-color: var(--accent-color);
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            filter: brightness(0); /* 다크모드 노란 배경에는 검은색 아이콘 */
+            transition: all 0.2s ease;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator:hover,
+        input[type="time"]::-webkit-calendar-picker-indicator:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        body.white-mode input[type="date"]::-webkit-calendar-picker-indicator,
+        body.white-mode input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: brightness(0) invert(1); /* 화이트모드 보라색 배경에는 흰색 아이콘 */
+        }
+
+        .saju-result {
+            margin-top: 30px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .saju-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .saju-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* 화이트 모드 */
+        body.white-mode {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --accent-color: #6a11cb;
+            --tab-bg: #e9ecef;
+            --card-bg: #ffffff;
+        }
+
+        body.white-mode .subtitle { color: #6c757d; }
+        body.white-mode .tab-btn { color: #495057; border-color: #dee2e6; }
+        body.white-mode .info-section { border-color: #e9ecef; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        body.white-mode .info-section p { color: #495057; }
+        body.white-mode .lotto-set { border-color: #e9ecef; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        body.white-mode .form-group label { color: #495057; }
+        body.white-mode .form-group input, body.white-mode .form-group select, body.white-mode textarea {
+            background: #fff; border-color: #ced4da; color: #212529;
+        }
+        body.white-mode .saju-result { border-color: #e9ecef; }
+        body.white-mode .saju-section { background: #f8f9fa; }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .policy-text {
+            font-size: 0.9em;
+            color: #aaa;
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: left;
+            padding: 20px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        body.white-mode .policy-text { color: #444; background: #eee; }
+    </style>
+</head>
+<body>
+    <button id="themeToggle" class="theme-toggle">☀️ 밝은 모드</button>
+    
+    <header>
+        <h1 class="title">🌟 오늘의 행운</h1>
+        <p class="subtitle">로또 번호 추첨과 전통 사주 분석 서비스를 무료로 이용하세요.</p>
+    </header>
+
+    <div class="container">
+        <nav class="tab-menu">
+            <button class="tab-btn active" onclick="showTab('lotto')">🎰 로또 추첨</button>
+            <button class="tab-btn" onclick="showTab('saju')">🔮 사주 분석</button>
+            <button class="tab-btn" onclick="showTab('contact')">✉️ 제휴 문의</button>
+            <button class="tab-btn" onclick="showTab('policy')">📜 이용약관</button>
+        </nav>
+
+        <!-- 로또 섹션 -->
+        <main id="lottoSection" class="tab-content active">
+            <section class="info-section">
+                <h2>로또 번호 자동 생성 안내</h2>
+                <p>로또 6/45 방식에 따라 1부터 45까지의 숫자 중 중복되지 않는 6개의 숫자를 무작위로 추출합니다.</p>
+                <p>추출된 번호는 통계적 확률에 기반하며, 실제 당첨을 보장하지 않습니다. 재미와 참고용으로 활용해 주세요.</p>
+            </section>
+            <button class="draw-btn" id="drawBtn">행운의 번호 받기</button>
+            <div id="resultsContainer" class="results-container"></div>
+        </main>
+
+        <!-- 사주 섹션 -->
+        <main id="sajuSection" class="tab-content">
+            <section class="info-section">
+                <h2>사주 분석 서비스 소개</h2>
+                <p>태어난 년, 월, 일, 시를 기반으로 개인의 오행(木, 火, 土, 金, 水)을 분석하여 성격과 운세를 풀어드립니다.</p>
+                <p>본 서비스는 전문적인 역술 상담을 대체할 수 없으며, 가벼운 마음으로 즐겨주시길 권장합니다.</p>
+            </section>
+            <div class="saju-form">
+                <form id="sajuForm">
+                    <div class="form-group">
+                        <label for="nameInput">이름</label>
+                        <input type="text" id="nameInput" required placeholder="성함을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdateInput">생년월일</label>
+                        <input type="date" id="birthdateInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthtimeInput">태어난 시간</label>
+                        <input type="time" id="birthtimeInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="genderInput">성별</label>
+                        <select id="genderInput" required>
+                            <option value="">선택하세요</option>
+                            <option value="male">남성</option>
+                            <option value="female">여성</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="draw-btn">무료 사주 분석하기</button>
+                </form>
+            </div>
+            <div id="sajuResult" class="saju-result" style="display:none;"></div>
+        </main>
+
+        <!-- 문의 섹션 -->
+        <main id="contactSection" class="tab-content">
+            <section class="info-section">
+                <h2>제휴 및 광고 문의</h2>
+                <p>비즈니스 제휴나 광고 게재에 관한 문의는 아래 양식을 통해 보내주세요. 확인 후 입력하신 이메일로 답변 드리겠습니다.</p>
+            </section>
+            <div class="saju-form">
+                <form action="https://formspree.io/f/mreygwyy" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="name" required placeholder="성함 또는 업체명">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="_replyto" required placeholder="답변받으실 이메일 주소">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" required placeholder="문의하실 내용을 상세히 적어주세요" style="min-height: 150px; resize: vertical;"></textarea>
+                    </div>
+                    <button type="submit" class="draw-btn">문의 내용 전송</button>
+                </form>
+            </div>
+        </main>
+
+        <!-- 약관 섹션 (애드센스 필수) -->
+        <main id="policySection" class="tab-content">
+            <section class="info-section">
+                <h2>개인정보처리방침 및 이용약관</h2>
+                <div class="policy-text">
+                    <p><strong>1. 수집하는 개인정보</strong>: 본 사이트는 사주 분석을 위해 사용자가 입력한 이름, 생년월일, 성별 정보를 수집하지만, 서버에 저장하지 않고 브라우저 내에서 즉시 처리 후 파기합니다.</p><br>
+                    <p><strong>2. 쿠키 사용</strong>: 구글 애드센스 등 제3자 광고 파트너는 사용자의 방문 기록을 바탕으로 광고를 제공하기 위해 쿠키를 사용할 수 있습니다.</p><br>
+                    <p><strong>3. 면책조항</strong>: 본 사이트에서 제공하는 로또 번호와 사주 결과는 과학적 근거가 없으며, 이를 통한 어떠한 결과에 대해서도 책임을 지지 않습니다.</p><br>
+                    <p><strong>4. 연락처</strong>: rodnejd@nate.com</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 오늘의 행운. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#" onclick="showTab('policy')">개인정보처리방침</a>
+            <a href="#" onclick="showTab('contact')">문의하기</a>
+        </div>
+    </footer>
+
+    <script>
+        // 탭 전환
+        function showTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(tabId + 'Section').classList.add('active');
+            
+            // 버튼 활성화
+            buttons.forEach(b => {
+                if(b.innerText.includes(tabId === 'lotto' ? '로또' : tabId === 'saju' ? '사주' : tabId === 'contact' ? '제휴' : '약관')) {
+                    b.classList.add('active');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        // 테마 토글
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('white-mode');
+            if(document.body.classList.contains('white-mode')) {
+                themeToggle.innerText = '🌙 어두운 모드';
+            } else {
+                themeToggle.innerText = '☀️ 밝은 모드';
+            }
+        });
+
+        // 로또 생성
+        document.getElementById('drawBtn').addEventListener('click', () => {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const numbers = Array.from({length: 45}, (_, i) => i + 1)
+                    .sort(() => Math.random() - 0.5).slice(0, 6).sort((a,b) => a-b);
+                
+                const setDiv = document.createElement('div');
+                setDiv.className = 'lotto-set';
+                setDiv.innerHTML = `<h3 class="set-title">${i}번째 행운의 번호</h3><div class="numbers-row"></div>`;
+                const row = setDiv.querySelector('.numbers-row');
+                
+                numbers.forEach(num => {
+                    const colorClass = num <= 9 ? 'color-1-9' : num <= 19 ? 'color-10-19' : num <= 29 ? 'color-20-29' : num <= 39 ? 'color-30-39' : 'color-40-45';
+                    row.innerHTML += `<div class="number-ball ${colorClass}">${num}</div>`;
+                });
+                container.appendChild(setDiv);
+            }
+        });
+
+        // 사주 분석 (강화된 로직)
+        document.getElementById('sajuForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const res = document.getElementById('sajuResult');
+            res.style.display = 'block';
+            res.innerHTML = '<p style="text-align:center;">우주의 기운을 모아 당신의 운명을 분석 중입니다... ✨</p>';
+            
+            setTimeout(() => {
+                const name = document.getElementById('nameInput').value;
+                const elements = [
+                    { name: '목(木)', desc: '성장과 의욕의 기운입니다. 나무처럼 곧게 뻗어나가는 에너지를 가지고 있어 새로운 일을 시작하거나 배움에 큰 성과가 있을 것입니다.' },
+                    { name: '화(火)', desc: '열정과 확산의 기운입니다. 불꽃처럼 주위를 밝히는 에너지가 강하여 예술적 감각이나 대인 관계에서 빛을 발하는 시기입니다.' },
+                    { name: '토(土)', desc: '신뢰와 중재의 기운입니다. 대지처럼 모든 것을 품는 포용력을 바탕으로 주변 사람들의 신망을 얻고 안정적인 기반을 닦게 됩니다.' },
+                    { name: '금(金)', desc: '결단과 수렴의 기운입니다. 날카로운 칼날처럼 명확한 판단력이 돋보이며, 지저분한 관계나 일을 정리하고 결실을 맺기에 최적입니다.' },
+                    { name: '수(水)', desc: '지혜와 유연함의 기운입니다. 물처럼 어디든 스며드는 유연한 사고방식으로 복잡한 문제를 해결하고 깊은 지혜를 얻게 될 것입니다.' }
+                ];
+                
+                const selectedElement = elements[Math.floor(Math.random() * elements.length)];
+
+                const luckData = {
+                    love: [
+                        "연인과의 소통이 원활해지는 시기입니다. 싱글이라면 뜻밖의 장소에서 설레는 인연을 만날 수 있습니다.",
+                        "서로의 진심을 확인하게 되는 중요한 계기가 생깁니다. 배려하는 마음이 행운을 불러옵니다.",
+                        "가까운 곳에 당신을 지켜보는 이가 있습니다. 너무 먼 곳에서 찾지 마세요."
+                    ],
+                    money: [
+                        "재물운이 상승 곡선을 그립니다. 계획하지 않은 보너스나 작은 횡재수가 따를 수 있습니다.",
+                        "지출 관리에 신경 써야 할 때입니다. 들어오는 돈보다 나가는 돈을 잘 단속하면 큰 복이 됩니다.",
+                        "투자에 길한 운세입니다. 평소 눈여겨보던 분야가 있다면 신중하게 접근해보세요."
+                    ],
+                    business: [
+                        "공들여온 프로젝트가 결실을 맺습니다. 주변의 조력자를 만나 큰 도움을 얻게 될 것입니다.",
+                        "새로운 아이디어가 쏟아지는 시기입니다. 생각만 하지 말고 실행에 옮길 때 성과가 따릅니다.",
+                        "확장보다는 내실을 기하는 것이 유리합니다. 기초를 튼튼히 하면 더 큰 도약이 가능합니다."
+                    ]
+                };
+
+                const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+                
+                res.innerHTML = `
+                    <div class="saju-header" style="text-align:center; margin-bottom:20px;">
+                        <h2 style="color:var(--accent-color); font-size:1.8em;">✨ ${name}님의 운명 분석 보고서 ✨</h2>
+                    </div>
+                    <div class="saju-section">
+                        <h3>☯️ 타고난 오행: ${selectedElement.name}</h3>
+                        <p>${selectedElement.desc}</p>
+                    </div>
+                    <div class="saju-section">
+                        <h3>❤️ 연애운 (Love)</h3>
+                        <p>${getRandom(luckData.love)} 상대방의 마음을 헤아리는 깊은 대화가 필요한 시점입니다.</p>
+                    </div>
+                    <div class="saju-section">
+                        <h3>💰 금전운 (Wealth)</h3>
+                        <p>${getRandom(luckData.money)} 저축과 투자 사이의 균형을 잘 맞춘다면 자산이 증식될 기회가 찾아옵니다.</p>
+                    </div>
+                    <div class="saju-section">
+                        <h3>💼 사업/학업운 (Success)</h3>
+                        <p>${getRandom(luckData.business)} 끈기 있게 밀고 나가는 추진력이 성공의 열쇠가 될 것입니다.</p>
+                    </div>
+                    <div class="saju-section" style="border-left: 4px solid var(--accent-color);">
+                        <h3>🌟 종합 조언</h3>
+                        <p>오늘 당신에게 가장 필요한 것은 '여유'입니다. 조급해하지 말고 흐름에 몸을 맡기면 자연스럽게 행운이 찾아올 것입니다. 행운의 숫자는 ${Math.floor(Math.random() * 45) + 1}번입니다.</p>
+                    </div>
+                `;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
