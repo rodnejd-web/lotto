@@ -225,10 +225,36 @@
             color: white;
             font-size: 1em;
             transition: all 0.3s ease;
+            appearance: none; /* 기본 화살표 제거 */
         }
 
-        .form-group input:focus {
-            background: rgba(255, 255, 255, 0.18);
+        /* 셀렉트 박스 커스텀 화살표 */
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 18px;
+            padding-right: 45px;
+        }
+
+        /* 옵션 목록 스타일 (브라우저 제약이 있으나 최소한의 배경/색상 보장) */
+        .form-group select option {
+            background-color: #2a2a4e; /* 다크모드 전용 진한 배경 */
+            color: white;
+            padding: 10px;
+        }
+
+        body.white-mode .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23212529' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        }
+
+        body.white-mode .form-group select option {
+            background-color: #ffffff;
+            color: #212529;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            background-color: rgba(255, 255, 255, 0.18);
             border-color: #764ba2;
             outline: none;
             box-shadow: 0 0 15px rgba(118, 75, 162, 0.3);
