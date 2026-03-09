@@ -222,14 +222,14 @@
             font-size: 1em;
         }
 
-        /* 데이트/타임 피커 아이콘 스타일링 */
+        /* 데이트/타임 피커 아이콘 스타일링 개선 */
         input[type="date"]::-webkit-calendar-picker-indicator,
         input[type="time"]::-webkit-calendar-picker-indicator {
             background-color: var(--accent-color);
             padding: 5px;
             border-radius: 4px;
             cursor: pointer;
-            filter: brightness(0); /* 다크모드 노란 배경에는 검은색 아이콘 */
+            filter: brightness(0); /* 기본(다크모드) 노란 배경에는 검은색 아이콘 */
             transition: all 0.2s ease;
         }
 
