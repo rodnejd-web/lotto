@@ -82,23 +82,25 @@
             padding: 12px 25px;
             font-size: 1.1em;
             font-weight: bold;
-            color: white;
-            background: var(--tab-bg);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
             transform: translateY(-2px);
         }
 
         .tab-btn.active {
             background: var(--primary-gradient);
             border-color: transparent;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.6);
         }
 
         main.tab-content {
@@ -116,22 +118,23 @@
         }
 
         .info-section {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.08);
             padding: 30px;
             border-radius: 15px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .info-section h2 {
             color: var(--accent-color);
             margin-bottom: 15px;
             font-size: 1.5em;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
         .info-section p {
             margin-bottom: 10px;
-            color: #e0e0ff;
+            color: #efefff;
         }
 
         .draw-btn {
@@ -161,8 +164,8 @@
         }
 
         .lotto-set {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -202,46 +205,57 @@
         .color-40-45 { background: linear-gradient(135deg, #4cd137 0%, #44bd32 100%); }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
-            color: #b8b8ff;
+            color: #d1d1ff;
+            font-size: 1.1em;
         }
 
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
             color: white;
             font-size: 1em;
+            transition: all 0.3s ease;
         }
 
-        /* 데이트/타임 피커 아이콘 스타일링 개선 */
+        .form-group input:focus {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: #764ba2;
+            outline: none;
+            box-shadow: 0 0 15px rgba(118, 75, 162, 0.3);
+        }
+
+        /* 데이트/타임 피커 아이콘 스타일링 - 프리미엄 버전 */
         input[type="date"]::-webkit-calendar-picker-indicator,
         input[type="time"]::-webkit-calendar-picker-indicator {
-            background-color: var(--accent-color);
-            padding: 5px;
-            border-radius: 4px;
+            background: var(--primary-gradient);
+            padding: 8px;
+            border-radius: 50%;
             cursor: pointer;
-            filter: brightness(0); /* 기본(다크모드) 노란 배경에는 검은색 아이콘 */
-            transition: all 0.2s ease;
+            filter: invert(1); /* 아이콘을 흰색으로 변경 */
+            box-shadow: 0 0 12px rgba(118, 75, 162, 0.6);
+            margin-right: -5px;
+            transition: all 0.3s ease;
         }
 
         input[type="date"]::-webkit-calendar-picker-indicator:hover,
         input[type="time"]::-webkit-calendar-picker-indicator:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 0 20px rgba(118, 75, 162, 0.8);
         }
 
         body.white-mode input[type="date"]::-webkit-calendar-picker-indicator,
         body.white-mode input[type="time"]::-webkit-calendar-picker-indicator {
-            filter: brightness(0) invert(1); /* 화이트모드 보라색 배경에는 흰색 아이콘 */
+            filter: none; /* 화이트 모드에서는 원래 색상(흰색아이콘) 유지 */
         }
 
         .saju-result {
