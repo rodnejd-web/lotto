@@ -373,6 +373,24 @@
             border-radius: 10px;
         }
         body.white-mode .policy-text { color: #444; background: #eee; }
+
+        .lucky-message {
+            text-align: center;
+            margin: -20px auto 30px;
+            padding: 16px 28px;
+            max-width: 600px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.15) 0%, rgba(118,75,162,0.15) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            font-size: 1.05em;
+            color: var(--accent-color);
+            letter-spacing: 0.02em;
+            font-weight: 500;
+        }
+        body.white-mode .lucky-message {
+            background: linear-gradient(135deg, rgba(102,126,234,0.08) 0%, rgba(118,75,162,0.08) 100%);
+            border-color: rgba(106,17,203,0.3);
+        }
     </style>
 </head>
 <body>
@@ -399,6 +417,7 @@
                 <p>추출된 번호는 통계적 확률에 기반하며, 실제 당첨을 보장하지 않습니다. 재미와 참고용으로 활용해 주세요.</p>
             </section>
             <button class="draw-btn" id="drawBtn">행운의 번호 받기</button>
+            <div id="luckyMessage" class="lucky-message"></div>
             <div id="resultsContainer" class="results-container"></div>
         </main>
 
@@ -482,6 +501,32 @@
     </footer>
 
     <script>
+        // 오늘의 한줄 행운 멘트
+        const luckyMessages = [
+            "🌟 오늘은 망설임 없이 도전하는 날입니다. 행운이 당신 편입니다!",
+            "✨ 작은 선택 하나가 오늘의 운명을 바꿉니다. 믿고 나아가세요.",
+            "🍀 기대하지 않은 곳에서 행운이 찾아옵니다. 눈을 크게 뜨세요!",
+            "💫 오늘 당신의 에너지는 최고조에 달해 있습니다. 가능성을 믿으세요.",
+            "🌈 한 발짝만 더 내딛으면 행운의 문이 열립니다. 포기하지 마세요!",
+            "⭐ 우주가 당신에게 미소 짓고 있습니다. 오늘은 특별한 날입니다.",
+            "🎯 집중한 만큼 결과가 따라옵니다. 오늘 당신의 집중력은 남다릅니다.",
+            "🌺 주변의 따뜻한 인연이 행운을 가져다줍니다. 소중한 사람과 함께하세요.",
+            "💎 당신 안의 빛이 오늘따라 더욱 빛납니다. 자신을 믿으세요!",
+            "🔮 긍정의 에너지가 행운을 끌어당깁니다. 밝은 마음으로 하루를 시작하세요.",
+            "🌙 오늘 밤 꿈에서 힌트를 얻을지도 모릅니다. 마음을 열어두세요.",
+            "🦋 변화를 두려워하지 마세요. 오늘의 변화가 내일의 행운이 됩니다.",
+            "🌊 흐름을 거스르지 말고 자연스럽게 나아가면 행운이 따릅니다.",
+            "🎵 마음속 노래를 흥얼거리세요. 오늘은 기분 좋은 일이 생깁니다.",
+            "🌸 봄바람처럼 가볍게, 오늘 하루 좋은 소식이 찾아옵니다.",
+            "⚡ 번뜩이는 아이디어를 놓치지 마세요. 오늘이 바로 그 날입니다.",
+            "🎁 예상치 못한 선물 같은 하루가 펼쳐집니다. 기대를 가져보세요!",
+            "🏆 노력한 만큼 보상받는 날입니다. 오늘의 땀이 값집니다.",
+            "🌻 해바라기처럼 밝은 면을 바라보세요. 행운도 밝은 곳을 좋아합니다.",
+            "🎉 오늘 당신 주변에 좋은 기운이 가득합니다. 즐겁게 보내세요!"
+        ];
+        document.getElementById('luckyMessage').textContent =
+            luckyMessages[Math.floor(Math.random() * luckyMessages.length)];
+
         // 탭 전환
         function showTab(tabId) {
             const contents = document.querySelectorAll('.tab-content');
